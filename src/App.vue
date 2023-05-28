@@ -3,7 +3,8 @@
 </script>
 
 <template>
-  <el-button type="primary">Primary</el-button>
+  <!-- 一級路由渲染位置 -->
+  <RouterView /> 
 </template>
 
 <style scoped>
