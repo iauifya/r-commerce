@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACA,QAAQ,CAAR;;;;;;;;;;;;;;;;;;CAAQ",
+    "sources": [
+        "index.scss"
+    ],
+    "names": [],
+    "file": "index.css"
+}

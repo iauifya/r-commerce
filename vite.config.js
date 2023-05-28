@@ -17,13 +17,27 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+        //1.配置elementPlus採用sass樣式配色系統
+        ElementPlusResolver({importStyle:"sass"})
+      ],
     }),
   ],
   resolve: {
     //實際的路徑轉換 @ -> src
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+  css:{
+    preprocessorOptions: {
+      sass: {
+        //2. 自動導入定制化文件進行樣式覆蓋
+        additionalDate: `
+          @use "@/styles/element/index.scss" as *;
+        `
+      }
+      
     }
   }
 })
