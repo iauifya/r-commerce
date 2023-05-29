@@ -18,3 +18,7 @@
     我是HOME 首頁
   </div>
 </template>
+
+<style scoped lang="scss">
+  
+</style>
