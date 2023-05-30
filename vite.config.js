@@ -24,6 +24,16 @@ export default defineConfig({
             ],
         }),
     ],
+    // pluginOptions: {
+    //     // 自动注入 less 文件
+    //     "style-resources-loader": {
+    //         preProcessor: "less",
+    //         patterns: [
+    //             __dirname + "/src/assets/styles/variables.less",
+    //             __dirname + "/src/assets/styles/mixin.less",
+    //         ],
+    //     },
+    // },
     resolve: {
         //實際的路徑轉換 @ -> src
         alias: {
@@ -36,6 +46,11 @@ export default defineConfig({
             scss: {
                 //2. 自動導入定制化文件進行樣式覆蓋
                 additionalDate: ` @use "@/styles/_var.scss"; `,
+                //additionalData: `$injectedColor: orange;`, //這個是有成功的，路徑應該也是對的，不知道為何會沒作用
+            },
+            less: {
+                //2. 自動導入定制化文件進行樣式覆蓋
+                additionalDate: ` @use "@/styles/variables.less"; `,
                 //additionalData: `$injectedColor: orange;`, //這個是有成功的，路徑應該也是對的，不知道為何會沒作用
             }
 

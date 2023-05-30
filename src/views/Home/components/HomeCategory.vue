@@ -1,5 +1,5 @@
 <template>
   <div>
-    我是分類
+    &nbsp;我是分類
   </div>
 </template>

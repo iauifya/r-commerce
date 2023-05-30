@@ -1,16 +1,18 @@
 import './assets/main.css'
 import router from './router'
+import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 import App from './App.vue'
 
-// import ErabbitUI from 'erabbit-ui'
-// import 'erabbit-ui/packages/theme/index.less'
+import "@/styles/common.less";
+
+const pinia = createPinia()
 
 //測試接口函數
-import { getCategory } from '@/apis/testAPI'
-getCategory().then(res => {
-    console.log(res)
-})
+// import { getCategoryAPI } from '@/apis/testAPI'
+// getCategoryAPI().then(res => {
+//     console.log(res)
+// })
 
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).use(pinia).mount('#app')

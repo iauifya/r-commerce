@@ -1,5 +1,5 @@
 <template>
   <div>
-    我是banner
+    &nbsp;我是banner
   </div>
 </template>
