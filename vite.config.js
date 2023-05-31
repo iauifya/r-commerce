@@ -43,15 +43,17 @@ export default defineConfig({
     },
     css: {
         preprocessorOptions: {
-            scss: {
-                //2. 自動導入定制化文件進行樣式覆蓋
-                additionalDate: ` @use "@/styles/_var.scss"; `,
-                //additionalData: `$injectedColor: orange;`, //這個是有成功的，路徑應該也是對的，不知道為何會沒作用
-            },
+            // scss: {
+            //     //2. 自動導入定制化文件進行樣式覆蓋
+            //     additionalData: ` @use "@/styles/_var.scss"; `,
+            //     //additionalData: `$injectedColor: orange;`, //這個是有成功的，路徑應該也是對的，不知道為何會沒作用
+            // },
             less: {
                 //2. 自動導入定制化文件進行樣式覆蓋
-                additionalDate: ` @use "@/styles/variables.less"; `,
-                //additionalData: `$injectedColor: orange;`, //這個是有成功的，路徑應該也是對的，不知道為何會沒作用
+                additionalData: ` @import "@/styles/variables.less"; 
+                @import "@/styles/mixin.less";
+                `, //1.additionalData，Data打成Date 2.@use不起作用，改用@import才行!
+
             }
 
         }
