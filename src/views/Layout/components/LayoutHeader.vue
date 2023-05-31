@@ -47,7 +47,7 @@ const categoryStore = useCategoryStore()
 <style scoped lang="less">
 .app-header {
   background: #fff;
-  margin-top: 56rem;
+
   .container {
     display: flex;
     align-items: center;
