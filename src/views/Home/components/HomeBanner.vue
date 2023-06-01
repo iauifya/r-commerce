@@ -1,22 +1,22 @@
 <script setup>
-// import { getBannerAPI } from '@/apis/home.js';
-// import { ref,onMounted } from 'vue'
-// const bannerList = ref([])
-// const getBanner = async() =>{
-//   const res = await getBannerAPI();
-//   console.log(res);
-//   bannerList.value = res.result;
-// }
-// onMounted(()=>{
-//   getBanner()
-// })
+import { getBannerAPI } from '@/apis/home.js';
+import { ref,onMounted } from 'vue'
+const bannerList = ref([])
+const getBanner = async() =>{
+  const res = await getBannerAPI();
+  console.log(res);
+  bannerList.value = res.result;
+}
+onMounted(()=>{
+  getBanner()
+})
 </script>
 <template>
   <div class="home-banner">
     <el-carousel height="500px">
-      <el-carousel-item v-for="item in 4" :key="item">
-        <h3 class="small justify-center" text="2xl">{{ item }}</h3>
-        <!-- <img src="" alt=""> -->
+      <el-carousel-item v-for="item in bannerList" :key="item.id">
+        <!-- <h3 class="small justify-center" text="2xl">{{ item }}</h3> -->
+        <img :src="item.imgUrl" alt="">
       </el-carousel-item>
     </el-carousel>
   </div>
