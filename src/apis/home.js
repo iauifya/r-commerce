@@ -1,9 +1,14 @@
 import httpInstance from '@/utils/http'
 
 //輪播api
-export function getBannerAPI() {
+// @param distributionSite banner投放位置（1为首页，2为分类商品页） 默认是1
+export function getBannerAPI(params = {}) {
+    const { distributionSite = '1' } = params
     return httpInstance({
-        url: 'home/banner'
+        url: 'home/banner',
+        params: {
+            distributionSite
+        }
     })
 }
 
