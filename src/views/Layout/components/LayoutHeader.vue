@@ -154,4 +154,8 @@ const categoryStore = useCategoryStore()
     }
   }
 }
+a.router-link-exact-active{
+  color: @xtxColor;
+  border-bottom: 1px solid @xtxColor;
+}
 </style>
