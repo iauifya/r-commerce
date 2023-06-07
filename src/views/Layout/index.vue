@@ -18,6 +18,8 @@ onMounted(()=> {
     <LayoutHeader />
     <LayoutNav />
     <!-- 二級路由接口 -->
+    <!-- :key="$route.fullPath"~第一種解決路由緩存的方式，但缺點是效能不好 -->
+    <!-- <Router-view :key="$route.fullPath"/> -->
     <Router-view />
     <LayoutFooter />
   </div>
