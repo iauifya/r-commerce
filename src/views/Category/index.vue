@@ -1,49 +1,52 @@
 <script setup>
-import { getCategoryAPI } from '@/apis/category.js';
-import { getBannerAPI } from '@/apis/home.js';
-import { ref,onMounted } from 'vue'
-import { useRoute } from 'vue-router'
-const route = useRoute()
-const categoryData = ref([])
-const getCategory = async() =>{
-  const res = await getCategoryAPI(route.params.id);
-  console.log(res);
-  categoryData.value = res.result;
-}
-const bannerList = ref([])
-const getBanner = async() =>{
-  const res = await getBannerAPI( {distributionSite: '2'} );
-  console.log(res);
-  bannerList.value = res.result;
-}
-onMounted(()=>{
-  getCategory();
-  getBanner();
-})
-
+import GoodsItem from './components/GoodsItem.vue';
+import { useBanner } from './composables/useBanner.js'
+import { useCategory } from './composables/useCategory.js'
+const { bannerList } = useBanner()
+const { categoryData } = useCategory()
 
 </script>
 
 <template>
   <div>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/' }" >首頁</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/' }">首頁</el-breadcrumb-item>
       <el-breadcrumb-item>
         <!-- <router-link :to="`/category/${categoryData.id}`"> -->
-          {{categoryData.name}}
+        {{ categoryData.name }}
         <!-- </router-link> -->
       </el-breadcrumb-item>
     </el-breadcrumb>
 
     <!-- 輪播圖 -->
     <div class="home-banner">
-    <el-carousel height="500px">
-      <el-carousel-item v-for="item in bannerList" :key="item.id">
-        <!-- <h3 class="small justify-center" text="2xl">{{ item }}</h3> -->
-        <img :src="item.imgUrl" alt="">
-      </el-carousel-item>
-    </el-carousel>
-  </div>
+      <el-carousel height="500px">
+        <el-carousel-item v-for="item in bannerList" :key="item.id">
+          <!-- <h3 class="small justify-center" text="2xl">{{ item }}</h3> -->
+          <img :src="item.imgUrl" alt="">
+        </el-carousel-item>
+      </el-carousel>
+    </div>
+    <!-- 商品分類列表 -->
+    <div class="sub-list">
+      <h3>全部分類</h3>
+      <ul>
+        <li v-for="item in categoryData.children" :key="item.id">
+          <router-link to="/">
+            <img :src="item.picture" alt="">
+            <p>{{ item.name }}</p>
+          </router-link>
+        </li>
+      </ul>
+    </div>
+    <div class="ref-goods" v-for="item in categoryData.children" :key="item.id">
+      <div class="head">
+        <h3>{{ item.name }}</h3>
+      </div>
+      <div class="body" >
+        <GoodsItem :good="good" v-for="good in item.goods" :key="good.id"></GoodsItem>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -52,10 +55,65 @@ onMounted(()=>{
   width: 1240px;
   height: 500px;
   margin-top: 16px;
-  img{
+
+  img {
     width: 100%;
     height: 500px;
   }
 }
-
+.sub-list {
+  margin-top: 20px;
+  background-color: #fff;
+  h3 {
+    font-size: 28px;
+    color: #666;
+    font-weight: normal;
+    text-align: center;
+    line-height: 100px;
+  }
+  ul {
+    display: flex;
+    padding: 0 32px;
+    flex-wrap: wrap;
+    li {
+      width: 168px;
+      height: 160px;
+      a {
+        text-align: center;
+        display: block;
+        font-size: 16px;
+        img {
+          width: 100px;
+          height: 100px;
+        }
+        p {
+          line-height: 40px;
+        }
+        &:hover {
+          color: @xtxColor;
+        }
+      }
+    }
+  }
+}
+.ref-goods {
+  background-color: #fff;
+  margin-top: 20px;
+  position: relative;
+  h3 {
+    font-size: 28px;
+    color: #666;
+    font-weight: normal;
+    text-align: center;
+    line-height: 100px;
+  }
+  .head {
+  }
+  .body {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 0 65px 30px;
+  }
+}
 </style>
