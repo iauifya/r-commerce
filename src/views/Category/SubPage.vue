@@ -1,4 +1,18 @@
 <script setup>
+import { getCategoryFilterAPI } from '@/apis/category.js';
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+const categoryData = ref([]);
+const route = useRoute();
+const getCategory = async() => {
+    const res = await getCategoryFilterAPI(route.params.id);
+    console.log(res);
+    categoryData.value = res.result;
+};
+
+onMounted(() => {
+    getCategory();
+});
 
 </script>
 <template>
