@@ -5,6 +5,7 @@ import Login from '@/views/Login/index.vue'
 import Layout from '@/views/Layout/index.vue'
 import Home from '@/views/Home/index.vue'
 import Category from '@/views/Category/index.vue'
+import SubCategory from '@/views/Category/SubPage.vue'
 import Goods from '@/views/Goods/index.vue'
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
@@ -24,9 +25,13 @@ const router = createRouter({
                     component: Category
                 },
                 {
+                    path: "/category/sub/:id",
+                    component: SubCategory
+                },
+                {
                     path: 'goods/:id',
                     component: Goods
-                }
+                },
             ]
         },
         {
