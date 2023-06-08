@@ -32,7 +32,7 @@ const { categoryData } = useCategory()
       <h3>全部分類</h3>
       <ul>
         <li v-for="item in categoryData.children" :key="item.id">
-          <router-link to="/">
+          <router-link :to="`/category/sub/${item.id}`">
             <img :src="item.picture" alt="">
             <p>{{ item.name }}</p>
           </router-link>
