@@ -32,6 +32,11 @@ onMounted(() => {
     getgoodsList();
 });
 
+function tabsHandler(){
+    console.log('目前的篩選:',reqData.value.sortField)
+    reqData.value.page = 1
+    getgoodsList();
+}
 </script>
 <template>
     <div class="container">
@@ -43,10 +48,10 @@ onMounted(() => {
             </el-breadcrumb>
         </div>
         <div class="sub-container">
-            <el-tabs class="demo-tabs">
-                <el-tab-pane label="最新商品" name="publishTime">User</el-tab-pane>
-                <el-tab-pane label="最高人氣" name="orderNum">Config</el-tab-pane>
-                <el-tab-pane label="評論最多" name="evaluateNum">Role</el-tab-pane>
+            <el-tabs v-model="reqData.sortField" class="demo-tabs" @tab-click="tabsHandler">
+                <el-tab-pane label="最新商品" name="publishTime">最新商品</el-tab-pane>
+                <el-tab-pane label="最高人氣" name="orderNum">最高人氣</el-tab-pane>
+                <el-tab-pane label="評論最多" name="evaluateNum">評論最多</el-tab-pane>
             </el-tabs>
             <!-- 商品列表 -->
             <div class="body">
@@ -55,3 +60,10 @@ onMounted(() => {
         </div>
     </div>
 </template>
+
+<style lang="less" scoped>
+    .body{
+        display: flex;
+        flex-flow: row wrap;
+    }
+</style>
