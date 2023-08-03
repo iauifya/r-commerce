@@ -16,7 +16,7 @@ onMounted(() => {
   <HomePanel title="新鮮好物" subTitle="新鮮出爐 品質靠譜">
     <ul class="good-list">
       <li v-for="item in newList" :key="item.id">
-        <router-link to="/">
+        <router-link :to="`/details/${item.id}`">
           <img :src="item.picture" alt="">
           <p class="name">{{ item.name }}</p>
           <p class="price">{{ item.price }}</p>
